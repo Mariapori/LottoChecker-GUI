@@ -66,6 +66,17 @@
             </layout>
           </object>
         </child>
+        <child>
+          <object class="tk.Button" id="btnTarkista">
+            <property name="background">#8d2010</property>
+            <property name="foreground">#ffffff</property>
+            <property name="text" translatable="yes">Tarkista listasta</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
       </object>
     </child>
   </object>

@@ -1,14 +1,18 @@
 import os
 import tkinter as tk
+from tkinter.constants import BOTH
 import tkinter.ttk as ttk
 import pygubu
 import requests
 import datetime
 import json
 import sys
+import tkinter.filedialog as tkFiledialog
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 PROJECT_UI = os.path.join(PROJECT_PATH, 'lotto.ui')
+
+veikatut = []
 txtNumerot = ''
 numerot = []
 year = datetime.date.today().year
@@ -54,6 +58,10 @@ class LottoApp:
             self.txtLisa.configure(background='#ff0000', text='Lisänumero: ')
             self.txtLisa.pack(side='top')
 
+        self.btnTarkista = tk.Button(self.labelframe1)
+        self.btnTarkista.configure(background='#8d2010', foreground='#ffffff', text='Tarkista listasta')
+        self.btnTarkista.configure(command=self.Tarkista)
+        self.btnTarkista.pack(side='top')
         self.labelframe1.configure(background='#ff0000', font='TkHeadingFont', foreground='#000000', height='200')
         self.labelframe1.configure(text='Lottonumerot', width='500')
         self.labelframe1.pack(fill='both', side='top')
@@ -63,6 +71,23 @@ class LottoApp:
         # Main widget
         self.mainwindow = self.frame1
     
+    def Tarkista(self):
+        osumat = 0
+        polku = tkFiledialog.askopenfilename()
+        tiedosto = open(polku,"r",)
+        lines = tiedosto.readlines()
+        for line in lines:
+            if line.startswith(week):
+                veikatut.append(line.split(" "))
+
+        if len(veikatut) > 0:
+            for veikkaus in veikatut:
+                for i in range(len(veikkaus)):
+                    if veikkaus[i] in numerot:
+                        osumat = osumat + 1
+
+        asd = tk.Message(self.mainwindow,text='Osumia: ' + str(osumat),aspect=400)
+        asd.pack(expand=1,anchor="n",pady=10)
 
     def run(self):
         self.mainwindow.mainloop()
@@ -71,6 +96,6 @@ class LottoApp:
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('Lottonumerot')
-    root.geometry('500x100')
+    root.geometry('500x180')
     app = LottoApp(root)
     app.run()
