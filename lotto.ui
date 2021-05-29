@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface version="1.1">
+  <object class="tk.Frame" id="frame1">
+    <property name="background">#ff0000</property>
+    <property name="container">false</property>
+    <property name="height">200</property>
+    <property name="width">500</property>
+    <layout manager="pack">
+      <property name="expand">true</property>
+      <property name="fill">both</property>
+      <property name="propagate">True</property>
+      <property name="side">top</property>
+    </layout>
+    <child>
+      <object class="tk.LabelFrame" id="labelframe1">
+        <property name="background">#ff0000</property>
+        <property name="font">TkHeadingFont</property>
+        <property name="foreground">#000000</property>
+        <property name="height">200</property>
+        <property name="text" translatable="yes">Lottonumerot
+</property>
+        <property name="width">500</property>
+        <layout manager="pack">
+          <property name="fill">both</property>
+          <property name="propagate">True</property>
+          <property name="side">top</property>
+        </layout>
+        <child>
+          <object class="tk.Label" id="txtVuosiViikko">
+            <property name="background">#ff0000</property>
+            <property name="text" translatable="yes">VK 1 / 2021
+</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Label" id="txt1">
+            <property name="background">#ff0000</property>
+            <property name="text" translatable="yes">Numerot</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Label" id="txtPlus">
+            <property name="background">#ff0000</property>
+            <property name="text" translatable="yes">Plus: </property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="tk.Label" id="txtLisa">
+            <property name="background">#ff0000</property>
+            <property name="text" translatable="yes">Lisänumero:</property>
+            <layout manager="pack">
+              <property name="propagate">True</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
