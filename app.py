@@ -11,7 +11,6 @@ import tkinter.filedialog as tkFiledialog
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 PROJECT_UI = os.path.join(PROJECT_PATH, 'lotto.ui')
-
 veikatut = []
 txtNumerot = ''
 numerot = []
@@ -67,28 +66,34 @@ class LottoApp:
         self.labelframe1.pack(fill='both', side='top')
         self.frame1.configure(background='#ff0000', height='200', width='500')
         self.frame1.pack(expand='true', fill='both', side='top')
-
+        self.var = tk.StringVar()
+        self.asd = tk.Message(master,textvariable=self.var,aspect=400)
         # Main widget
         self.mainwindow = self.frame1
     
     def Tarkista(self):
-        osumat = 0
-        polku = tkFiledialog.askopenfilename()
-        tiedosto = open(polku,"r")
-        lines = tiedosto.readlines()
-        for line in lines:
-            if line.startswith(week):
-                veikatut.append(line.split(" "))
+        if self.asd is not None:
+            self.asd.destroy()
+            self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
+        try:
+            osumat = 0
+            polku = tkFiledialog.askopenfilename()
+            tiedosto = open(polku,"r")
+            lines = tiedosto.readlines()
+            for line in lines:
+                if line.startswith(week):
+                    veikatut.append(line.split(" "))
 
-        if len(veikatut) > 0:
-            for veikkaus in veikatut:
-                for i in range(len(veikkaus)):
-                    if veikkaus[i] in numerot:
-                        osumat = osumat + 1
+            if len(veikatut) > 0:
+                for veikkaus in veikatut:
+                    for i in range(len(veikkaus)):
+                        if veikkaus[i] in numerot:
+                            osumat = osumat + 1
 
-        asd = tk.Message(self.mainwindow,text='Osumia: ' + str(osumat),aspect=400)
-        asd.pack(expand=1,anchor="n",pady=10)
-
+            self.var.set("Osumia: " + str(osumat))
+        except:
+            self.var.set("Tiedostoa ei voitu lukea..")
+        self.asd.pack(expand=1,anchor="n",pady=10)
     def run(self):
         self.mainwindow.mainloop()
 
