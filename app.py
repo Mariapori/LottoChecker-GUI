@@ -74,7 +74,7 @@ class LottoApp:
     def Tarkista(self):
         osumat = 0
         polku = tkFiledialog.askopenfilename()
-        tiedosto = open(polku,"r",)
+        tiedosto = open(polku,"r")
         lines = tiedosto.readlines()
         for line in lines:
             if line.startswith(week):
