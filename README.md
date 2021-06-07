@@ -6,5 +6,5 @@ LottoChecker with tkinter and pygubu
 
 Example check file (lista.txt)
 ```
-W20 3 6 17 24 33 39 27 22 11
+W22 7 11 15 16 24 32 37
 ```
