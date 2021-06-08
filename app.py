@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
 import os
 import tkinter as tk
@@ -13,7 +13,7 @@ import tkinter.filedialog as tkFiledialog
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 PROJECT_UI = os.path.join(PROJECT_PATH, 'lotto.ui')
-veikatut = []
+
 txtNumerot = ''
 numerot = []
 year = datetime.date.today().year
@@ -34,6 +34,8 @@ for numero in numerot:
 
 class LottoApp:
     def __init__(self, master=None):
+        self.veikatut = []
+        self.osumat = 0
         self.WKNUM = int(week.replace("W",""))
         self.numerot = numerot
         # build ui
@@ -101,10 +103,11 @@ class LottoApp:
         if self.asd is not None:
             self.asd.destroy()
             self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
-            
-        veikatut = []
+        self.osumat = 0
+        self.veikatut.clear()
         txtNumerot = ''
-        numerot = []
+        numerot.clear()
+        
         year = datetime.date.today().year
 
         if self.WKNUM is None:
@@ -142,10 +145,10 @@ class LottoApp:
         if self.asd is not None:
             self.asd.destroy()
             self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
-
-        veikatut = []
+        self.osumat = 0
+        self.veikatut.clear()
         txtNumerot = ''
-        numerot = []
+        numerot.clear()
         year = datetime.date.today().year
 
         if self.WKNUM is None:
@@ -185,22 +188,23 @@ class LottoApp:
             self.asd.destroy()
             self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
         try:
-            osumat = 0
+            self.osumat = 0
+            self.veikatut.clear()
             polku = tkFiledialog.askopenfilename()
             tiedosto = open(polku,"r")
             lines = tiedosto.readlines()
             wk = "W" + str(self.WKNUM)
             for line in lines:
                 if line.startswith(wk):
-                    veikatut.append(line.split(" "))
+                    self.veikatut.append(line.split(" "))
 
-            if len(veikatut) > 0:
-                for veikkaus in veikatut:
+            if len(self.veikatut) > 0:
+                for veikkaus in self.veikatut:
                     for i in range(len(veikkaus)):
                         if veikkaus[i] in self.numerot:
-                            osumat = osumat + 1
+                            self.osumat = self.osumat + 1
 
-            self.var.set("Osumia: " + str(osumat))
+            self.var.set("Osumia: " + str(self.osumat))
         except:
             self.var.set("Tiedostoa ei voitu lukea..")
         self.asd.pack(expand=1,anchor="n",pady=10)
