@@ -32,6 +32,7 @@ for numero in numerot:
 
 class LottoApp:
     def __init__(self, master=None):
+        self.osumat = 0
         self.WKNUM = int(week.replace("W",""))
         self.numerot = numerot
         # build ui
@@ -96,10 +97,6 @@ class LottoApp:
         self.mainwindow = self.frame1
     
     def edellinenwk(self):
-        if self.asd is not None:
-            self.asd.destroy()
-            self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
-            
         veikatut = []
         txtNumerot = ''
         numerot = []
@@ -135,7 +132,10 @@ class LottoApp:
         else:
             self.txtlisavar.set('Lisänumero: ')
             self.txtplusvar.set('Plus: ')
-
+            
+        if self.asd is not None:
+            self.asd.destroy()
+            self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
     def seuraavawk(self):
         if self.asd is not None:
             self.asd.destroy()
@@ -183,7 +183,7 @@ class LottoApp:
             self.asd.destroy()
             self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
         try:
-            osumat = 0
+            self.osumat = 0
             polku = tkFiledialog.askopenfilename()
             tiedosto = open(polku,"r")
             lines = tiedosto.readlines()
@@ -196,9 +196,9 @@ class LottoApp:
                 for veikkaus in veikatut:
                     for i in range(len(veikkaus)):
                         if veikkaus[i] in self.numerot:
-                            osumat = osumat + 1
+                            self.osumat = self.osumat + 1
 
-            self.var.set("Osumia: " + str(osumat))
+            self.var.set("Osumia: " + str(self.osumat))
         except:
             self.var.set("Tiedostoa ei voitu lukea..")
         self.asd.pack(expand=1,anchor="n",pady=10)
@@ -210,5 +210,6 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Lottonumerot')
     root.geometry('500x180')
+    root.iconbitmap("lottonumerot.ico")
     app = LottoApp(root)
     app.run()
