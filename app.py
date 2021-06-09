@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 import tkinter as tk
 from tkinter.constants import BOTH
@@ -11,7 +13,7 @@ import tkinter.filedialog as tkFiledialog
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__file__))
 PROJECT_UI = os.path.join(PROJECT_PATH, 'lotto.ui')
-veikatut = []
+
 txtNumerot = ''
 numerot = []
 year = datetime.date.today().year
@@ -99,7 +101,8 @@ class LottoApp:
     def edellinenwk(self):
         veikatut = []
         txtNumerot = ''
-        numerot = []
+        numerot.clear()
+        
         year = datetime.date.today().year
 
         if self.WKNUM is None:
@@ -140,10 +143,10 @@ class LottoApp:
         if self.asd is not None:
             self.asd.destroy()
             self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
-
-        veikatut = []
+        self.osumat = 0
+        self.veikatut.clear()
         txtNumerot = ''
-        numerot = []
+        numerot.clear()
         year = datetime.date.today().year
 
         if self.WKNUM is None:
@@ -190,10 +193,10 @@ class LottoApp:
             wk = "W" + str(self.WKNUM)
             for line in lines:
                 if line.startswith(wk):
-                    veikatut.append(line.split(" "))
+                    self.veikatut.append(line.split(" "))
 
-            if len(veikatut) > 0:
-                for veikkaus in veikatut:
+            if len(self.veikatut) > 0:
+                for veikkaus in self.veikatut:
                     for i in range(len(veikkaus)):
                         if veikkaus[i] in self.numerot:
                             self.osumat = self.osumat + 1
