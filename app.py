@@ -34,6 +34,7 @@ for numero in numerot:
 
 class LottoApp:
     def __init__(self, master=None):
+        self.veikatut = []
         self.osumat = 0
         self.WKNUM = int(week.replace("W",""))
         self.numerot = numerot
@@ -99,7 +100,11 @@ class LottoApp:
         self.mainwindow = self.frame1
     
     def edellinenwk(self):
-        veikatut = []
+        if self.asd is not None:
+            self.asd.destroy()
+            self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
+        self.osumat = 0
+        self.veikatut.clear()
         txtNumerot = ''
         numerot.clear()
         
@@ -135,10 +140,7 @@ class LottoApp:
         else:
             self.txtlisavar.set('Lisänumero: ')
             self.txtplusvar.set('Plus: ')
-            
-        if self.asd is not None:
-            self.asd.destroy()
-            self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
+
     def seuraavawk(self):
         if self.asd is not None:
             self.asd.destroy()
@@ -187,6 +189,7 @@ class LottoApp:
             self.asd = tk.Message(self.mainwindow,textvariable=self.var,aspect=400)
         try:
             self.osumat = 0
+            self.veikatut.clear()
             polku = tkFiledialog.askopenfilename()
             tiedosto = open(polku,"r")
             lines = tiedosto.readlines()
@@ -213,6 +216,5 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Lottonumerot')
     root.geometry('500x180')
-    root.iconbitmap("lottonumerot.ico")
     app = LottoApp(root)
     app.run()
