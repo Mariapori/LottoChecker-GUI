@@ -195,8 +195,9 @@ class LottoApp:
             lines = tiedosto.readlines()
             wk = "W" + str(self.WKNUM)
             for line in lines:
-                if line.startswith(wk):
-                    self.veikatut.append(line.split(" "))
+                linja = line.replace("\n","")
+                if linja.startswith(wk):
+                    self.veikatut.append(linja.split(" "))
 
             if len(self.veikatut) > 0:
                 for veikkaus in self.veikatut:
