@@ -1,3 +1,6 @@
 setup.py
 /build
 .DS_Store
+LOTTOTESTI.txt
+msi.py
+dist/Lottonumerot-2.1.1-amd64.msi
