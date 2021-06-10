@@ -217,6 +217,5 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.title('Lottonumerot')
     root.geometry('500x180')
-    root.iconbitmap("lottonumerot.ico")
     app = LottoApp(root)
     app.run()
