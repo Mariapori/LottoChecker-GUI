@@ -57,42 +57,42 @@ class LottoApp:
         self.frame1 = tk.Frame(master, container='false')
         self.labelframe1 = tk.LabelFrame(self.frame1)
         self.txtVuosiViikko = tk.Label(self.labelframe1)
-        self.txtVuosiViikko.configure(background='#ff0000', textvariable=self.vuosiviikkovar)
+        self.txtVuosiViikko.configure(textvariable=self.vuosiviikkovar)
         self.txtVuosiViikko.pack(side='top')
         self.txt1 = tk.Label(self.labelframe1)
-        self.txt1.configure(background='#ff0000', textvariable=self.txt1var)
+        self.txt1.configure( textvariable=self.txt1var)
         self.txt1.pack(side='top')
 
         self.txtPlus = tk.Label(self.labelframe1)
         if len(data) > 0:
-            self.txtPlus.configure(background='#ff0000', textvariable=self.txtplusvar)
+            self.txtPlus.configure( textvariable=self.txtplusvar)
             self.txtPlus.pack(side='top')
             self.txtLisa = tk.Label(self.labelframe1)
-            self.txtLisa.configure(background='#ff0000', textvariable=self.txtlisavar)
+            self.txtLisa.configure( textvariable=self.txtlisavar)
             self.txtLisa.pack(side='top')
         else:
-            self.txtPlus.configure(background='#ff0000', textvariable=self.txtplusvar)
+            self.txtPlus.configure( textvariable=self.txtplusvar)
             self.txtPlus.pack(side='top')
             self.txtLisa = tk.Label(self.labelframe1)
-            self.txtLisa.configure(background='#ff0000', textvariable=self.txtlisavar)
+            self.txtLisa.configure( textvariable=self.txtlisavar)
             self.txtLisa.pack(side='top')
 
         self.btnEdellinenwk = tk.Button(self.labelframe1)
-        self.btnEdellinenwk.configure(background='#ff0000', text='<')
+        self.btnEdellinenwk.configure( text='<')
         self.btnEdellinenwk.configure(command=self.edellinenwk)
         self.btnEdellinenwk.place(anchor='nw', relwidth='0.14', relx='0.0', rely='0.0', x='0', y='0')
         self.btnSeuraavawk = tk.Button(self.labelframe1)
-        self.btnSeuraavawk.configure(background='#ff0000', text='>')
+        self.btnSeuraavawk.configure( text='>')
         self.btnSeuraavawk.configure(command=self.seuraavawk)
         self.btnSeuraavawk.place(anchor='nw', relwidth='0.14', relx='0.86', rely='0.0', x='0', y='0')
         self.btnTarkista = tk.Button(self.labelframe1)
-        self.btnTarkista.configure(background='#8d2010', foreground='#ffffff', text='Tarkista listasta')
+        self.btnTarkista.configure(foreground='#000000', text='Tarkista listasta')
         self.btnTarkista.configure(command=self.Tarkista)
-        self.btnTarkista.pack(side='top')
-        self.labelframe1.configure(background='#ff0000', font='TkHeadingFont', foreground='#000000', height='200')
+        self.btnTarkista.pack(side='top',pady=15)
+        self.labelframe1.configure( font='TkHeadingFont', foreground='#000000', height='200')
         self.labelframe1.configure(text='Lottonumerot', width='500')
         self.labelframe1.pack(fill='both', side='top')
-        self.frame1.configure(background='#ff0000', height='200', width='500')
+        self.frame1.configure( height='250', width='500')
         self.frame1.pack(expand='true', fill='both', side='top')
         self.var = tk.StringVar()
         self.asd = tk.Message(master,textvariable=self.var,aspect=400)
@@ -198,14 +198,17 @@ class LottoApp:
                 linja = line.replace("\n","")
                 if linja.startswith(wk):
                     self.veikatut.append(linja.split(" "))
-
+            osumaNumerot = []
+            txtOsumaNumerot = ""
             if len(self.veikatut) > 0:
                 for veikkaus in self.veikatut:
                     for i in range(len(veikkaus)):
                         if veikkaus[i] in self.numerot:
                             self.osumat = self.osumat + 1
-
-            self.var.set("Osumia: " + str(self.osumat))
+                            osumaNumerot.append(veikkaus[i])
+            for osuma in osumaNumerot:
+                txtOsumaNumerot = txtOsumaNumerot + " " + osuma
+            self.var.set("Osumia: " + str(self.osumat) + "\nNumerot: " + txtOsumaNumerot)
         except:
             self.var.set("Tiedostoa ei voitu lukea..")
         self.asd.pack(expand=1,anchor="n",pady=10)
@@ -216,6 +219,6 @@ class LottoApp:
 if __name__ == '__main__':
     root = tk.Tk()
     root.title('Lottonumerot')
-    root.geometry('500x180')
+    root.geometry('500x250')
     app = LottoApp(root)
     app.run()
