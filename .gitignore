@@ -4,3 +4,6 @@ setup.py
 LOTTOTESTI.txt
 msi.py
 dist/Lottonumerot-2.1.1-amd64.msi
+app.spec
+dist/app
+__pycache__/app.cpython-39.pyc
