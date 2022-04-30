@@ -18,6 +18,8 @@ txtNumerot = ''
 numerot = []
 year = datetime.date.today().year
 week = 'W' + str(datetime.date.today().isocalendar()[1])
+if len(week) < 3:
+    week = week.replace('W','W0')
 thisweekandyear = str(year) + '-' + week
 jsondata = requests.get('https://www.veikkaus.fi/api/draw-results/v1/games/LOTTO/draws/by-week/' + thisweekandyear)
 data = json.loads(jsondata.content)
@@ -119,6 +121,10 @@ class LottoApp:
             self.WKNUM = week
 
         thisweekandyear = str(year) + '-W' + str(week)
+        if week < 10:
+            thisweekandyear = thisweekandyear.replace('-W','-W0')
+        else:
+            thisweekandyear = thisweekandyear.replace('-W0','-W')
         jsondata = requests.get('https://www.veikkaus.fi/api/draw-results/v1/games/LOTTO/draws/by-week/' + thisweekandyear)
         data = json.loads(jsondata.content)
 
@@ -161,6 +167,12 @@ class LottoApp:
         
 
         thisweekandyear = str(year) + '-W' + str(week)
+
+        if week < 10:
+            thisweekandyear = thisweekandyear.replace('-W','-W0')
+        else:
+            thisweekandyear = thisweekandyear.replace('-W0','-W')
+            
         jsondata = requests.get('https://www.veikkaus.fi/api/draw-results/v1/games/LOTTO/draws/by-week/' + thisweekandyear)
         data = json.loads(jsondata.content)
 
