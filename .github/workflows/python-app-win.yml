@@ -37,4 +37,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: D:\a\LottoChecker-GUI\LottoChecker-GUI\build\app\app.exe
+        path: D:\a\LottoChecker-GUI\LottoChecker-GUI\dist\
