@@ -32,9 +32,9 @@ jobs:
         pip install -U pyinstaller
     - name: Make exe
       run: |
-        pyinstaller --onefile app.py
+        pyinstaller -w --onefile app.py
     - name: Upload
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: D:\a\LottoChecker-GUI\LottoChecker-GUI\dist\
+        path: D:\a\LottoChecker-GUI\LottoChecker-GUI\dist\app.exe
