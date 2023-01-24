@@ -38,3 +38,9 @@ jobs:
       with:
         name: app
         path: /home/runner/work/LottoChecker-GUI/LottoChecker-GUI/build/app/app
+    - name: Release
+      uses: fnkr/github-action-ghr@v1
+      env:
+        GHR_PATH: /home/runner/work/LottoChecker-GUI/LottoChecker-GUI/build/app/
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
