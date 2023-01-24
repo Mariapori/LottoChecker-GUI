@@ -33,3 +33,8 @@ jobs:
     - name: Make exe
       run: |
         pyinstaller app.py
+    - name: Upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: /home/runner/work/LottoChecker-GUI/LottoChecker-GUI/build/app/app
