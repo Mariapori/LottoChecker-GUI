@@ -37,4 +37,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: app
-        path: ../runner/work/LottoChecker-GUI/LottoChecker-GUI/build/app/app
+        path: D:\a\LottoChecker-GUI\LottoChecker-GUI\build\app\
