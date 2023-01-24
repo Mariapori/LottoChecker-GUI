@@ -38,8 +38,3 @@ jobs:
       with:
         name: app
         path: D:\a\LottoChecker-GUI\LottoChecker-GUI\dist\app.exe
-    - name: Release
-      uses: fnkr/github-action-ghr@v1
-      env:
-        GHR_PATH: D:\a\LottoChecker-GUI\LottoChecker-GUI\dist\
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
